@@ -1,7 +1,7 @@
 import ListItem from './ListItem'
 
 interface List {
-    //not really 
+    //property and methods
     list: ListItem[],
     load(): void,
     save(): void,
@@ -15,7 +15,7 @@ export default class FullList implements List {
     //receives private list
     private constructor(
         private _list: ListItem[] = [],
-    ) { }
+    ) {}
     //getter method for list
     get list(): ListItem[] {
         return this._list
