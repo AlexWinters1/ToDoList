@@ -1,2 +1,3 @@
 https://github.com/gitdagray/typescript-course/tree/main/lesson11
 http://localhost:5173/
+https://youtu.be/61v23Ce5SXA?si=AoO2c4XiMBi0atOq
