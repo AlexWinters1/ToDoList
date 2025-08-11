@@ -9,8 +9,8 @@ export default class ListTemplate implements DOMList {
     ul: HTMLUListElement
     static instance: ListTemplate = new ListTemplate()
 
-    private constructor(){
-         this.ul = document.getElementById("listItems") as HTMLUListElement,
+    private constructor() {
+         this.ul = document.getElementById("listItems") as HTMLUListElement
     }
     
     clear(): void{
@@ -29,7 +29,7 @@ export default class ListTemplate implements DOMList {
             check.checked = item.checked
             li.append(check)
             
-            check.addEventListener('change', ()=>{
+            check.addEventListener('change', () => {
                 item.checked = !item.checked
                 fullList.save()
             })

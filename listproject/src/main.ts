@@ -3,20 +3,41 @@ import FullList from './model/FullList'
 import ListItem from './model/ListItem'
 import ListTemplate from './templates/ListTemplate'
 
-//initialize app func
-    //get instances
-    //fullList
-    //template
-//itemEntryForm get by id type assert as HTMLFormEle
-    //add event listener function
-        //prevent default
-    //create handler
-    // const input and get elem by id making it "newItem"
-    //const newEntryText as a string then 
-//clear Items const type assert, add listener method to clear items button 
-    //fullList.clearItems 
-    //template.clear()
-//call load 
-//call template render and pass in fullList
 
-//add event listener to doc itself and call DOMContentLoaded
+const initApp = (): void => {
+    const fullList = FullList.instance
+    const template = ListTemplate.instance
+
+    const itemEntryForm = document.getElementById("itemEntryForm") as HTMLFormElement
+    itemEntryForm.addEventListener("submit", (event: SubmitEvent): void => {
+        //keeps form from reloading page
+
+        event.preventDefault()
+        //handler that will submit new event
+
+        const input = document.getElementById("newItem") as HTMLInputElement
+        const newEntryText: string = input.value.trim()
+        if(!newEntryText.length) return
+
+        const itemID: number = fullList.list.length
+            ? parseInt(fullList.list[fullList.list.length - 1].id) + 1
+            : 1
+
+            const newItem = new ListItem(itemID.toString(), newEntryText)
+
+            fullList.addItem(newItem)
+
+            template.render(fullList)
+    })
+
+    const clearItems = document.getElementById("clearItemsButton") as HTMLButtonElement
+
+    clearItems.addEventListener('click', (): void =>{
+        fullList.clearList()
+        template.clear()
+    })
+    fullList.load()
+    template.render(fullList)
+}
+
+document.addEventListener("DOMContentLoaded", initApp)
